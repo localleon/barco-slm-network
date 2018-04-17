@@ -1,0 +1,4 @@
+flask==0.12.2
+flask-httpauth==3.2.3
+flask-cors
+sacn
