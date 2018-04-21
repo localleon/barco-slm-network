@@ -1,3 +1,5 @@
-0x80 0x7E 0x00 0x22 0x42 0x00 0x80 0x7F $oD
+Shutter close:
+fe 01 23 42 00 66 ff
 
-[start byte ][proj#][shutter ][null][ end byte ][carriage return]
+Shutter open:
+fe 01 22 42 00 65 ff

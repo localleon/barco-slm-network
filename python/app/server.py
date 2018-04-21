@@ -11,14 +11,18 @@ import logging
 from logging.handlers import RotatingFileHandler
 logger = logging.getLogger('werkzeug')  # Gets Flasks main Logger
 
-from serial import *       # Methodes for all the Serial Stuff
+# from serial import *       # Methodes for all the Serial Stuff
+import serial
+def send_serial(tosend):
+    print(tosend)
+    ser.write(tosend)
 
 #============  CONFIG  ============
 from apiconfig import *        # Imports Config Values
 app = Flask(__name__)          # Inits Flask APP
 CORS(app)                      # Adds a Cors Header to the Responses
 auth = HTTPBasicAuth()         # HTTP Basic Authentication
-
+ser = serial.Serial('/dev/ttyUSB0')  # open serial port
 # =================== Logging ===================================0
 
 def file_logger():
@@ -71,6 +75,7 @@ def tasks_control(cmd):
     sessionlogger(request)
     if cmd in serial_commands.keys():
         logger.info(serial_commands[cmd])
+        send_serial(serial_commands[cmd])
         return jsonify(success_response), 200
     else:
         return "", 404
@@ -115,7 +120,7 @@ def start_redirect():
 
 
 if __name__ == '__main__':
-    file_logger()
+    # file_logger()
 
     # sACN
     sacn_rcv = sacn.sACNreceiver()
