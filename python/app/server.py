@@ -14,7 +14,7 @@ logger = logging.getLogger('werkzeug')  # Gets Flasks main Logger
 # from serial import *       # Methodes for all the Serial Stuff
 import serial
 def send_serial(tosend):
-    print(tosend)
+    
     ser.write(tosend)
 
 #============  CONFIG  ============
