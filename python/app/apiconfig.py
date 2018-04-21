@@ -10,8 +10,8 @@ success_response = {
 }
 
 serial_commands = {
-    "shutter_on": "turn on shutter cmd",
-    "shutter_off": "turn off shutter cmd",
+    "shutter_on":  b'\xfe\x01\x22\x42\x00\x65\xff',
+    "shutter_off": b'\xfe\x01\x23\x42\x00\x66\xff',
 }
 
 # NOTE: These numbers are 0-based because we are handling 0-based arrays/lists
