@@ -3,8 +3,6 @@ users = {
     "FMT": "test",                                          # FrontEnd Default User
 }
 
-sessionlog = []  # Array for logging entrys
-
 success_response = {
     "status": "success",
 }
@@ -19,7 +17,6 @@ sacn_mapping = {
     0: "shutter_on",
     1: "shutter_off",
 }
-
 
 def dataresponse(data):
     return{
