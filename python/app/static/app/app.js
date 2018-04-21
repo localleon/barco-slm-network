@@ -8,7 +8,7 @@ window.onload = function () {
 
 function stdrequest(key) {
   // Standard Request for activating functions
-  fetch("app/push/" + key, {
+  fetch("app/send/" + key, {
     methode: 'POST',
     credentials: 'same-origin'
   })
