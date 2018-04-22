@@ -42,6 +42,16 @@ func (m *Message) getByteSlice() []byte {
 	return arr
 }
 
+//Creates a byte slice generated from the given data
+func createBytes(projAddr byte, cmd []byte, data []byte) []byte {
+	msg := Message{
+		projectorAddr: projAddr,
+		cmd:           cmd,
+		data:          data,
+	}
+	return msg.getByteSlice()
+}
+
 //Converts a byte if its x80 xfe or xff like the documentation wants to
 //Otherwise it returns the given byte again
 func convertByte(val byte) []byte {
