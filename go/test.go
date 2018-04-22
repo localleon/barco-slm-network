@@ -1,11 +1,38 @@
 package main
 
-import "fmt"
-import "log"
-import "github.com/jacobsa/go-serial/serial"
+import (
+	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/jacobsa/go-serial/serial"
+)
 
 func main() {
 
+	router := mux.NewRouter()
+	router.HandleFunc("/api/{cmd}/{data}", func(w http.ResponseWriter, r *http.Request) {
+		params := mux.Vars(r)
+		log.Printf("Got request: %v, %v", params["cmd"], params["data"])
+	}).Methods("GET")
+	router.HandleFunc("/api/{cmd}", func(w http.ResponseWriter, r *http.Request) {
+		params := mux.Vars(r)
+		log.Printf("Got request: %v, %v", params["cmd"], params["data"])
+	}).Methods("GET")
+	fmt.Println("Press Ctrl+C to abort")
+	log.Fatal(http.ListenAndServe(":8000", router))
+
+	m := map[string][]byte{
+		"test":  []byte{1, 2, 3},
+		"test2": []byte{4, 5, 6},
+	}
+	fmt.Println(m["test"])
+	fmt.Println(m[""])
+	fmt.Println([]byte("test"))
+	for _, v := range []byte("test") {
+		fmt.Println(v)
+	}
 	// Set up options.
 	options := serial.OpenOptions{
 		PortName:        "COM4",
