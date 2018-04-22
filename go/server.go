@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -11,11 +13,16 @@ import (
 
 var projAddr byte = 1
 
-func main2() {
+func main() {
+	portName := flag.String("name", "COM4", "the identifier for the serial port")
+	baudRate := flag.Uint("baudrate", 9600, "the baudrate for the serial communication")
+
+	flag.Parse()
+	fmt.Printf("Trying to open %v \n", *portName)
 	// Set up options.
 	options := serial.OpenOptions{
-		PortName:        "COM4",
-		BaudRate:        9600,
+		PortName:        *portName,
+		BaudRate:        *baudRate,
 		DataBits:        8,
 		StopBits:        1,
 		MinimumReadSize: 4,
@@ -24,9 +31,10 @@ func main2() {
 	// Open the port.
 	port, err := serial.Open(options)
 	if err != nil {
-		log.Fatalf("serial.Open: %v", err)
+		log.Fatalf("Could not open serial port: %v", err)
 	}
 	defer port.Close() //Make sure to close the port
+	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
 
 	//Start REST-Api:
 	router := mux.NewRouter()

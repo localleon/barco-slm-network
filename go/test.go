@@ -9,7 +9,7 @@ import (
 	"github.com/jacobsa/go-serial/serial"
 )
 
-func main() {
+func main2() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/api/{cmd}/{data}", func(w http.ResponseWriter, r *http.Request) {
