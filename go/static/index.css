@@ -1,0 +1,26 @@
+html{
+    --light-blue: #a4e4fc;
+    --light-black : #152931;
+
+    margin: 20px 0px 0px 60px;
+    padding: 0px;
+    background-color: var(--light-black);
+    color:white;
+}
+
+h1{
+    font-size: 4em;
+}
+
+h2{
+    margin-top: 20px;
+    font-size: 2em;
+}
+.header{
+    color: var(--light-blue);
+}
+
+.inner{
+    margin-left: 20px;
+}
+
