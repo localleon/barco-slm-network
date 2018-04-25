@@ -15,21 +15,25 @@
 
     <div class="inner">
         <h2>Shutter</h2>
-        <button class="btn">Open Fast</button>
-        <button class="btn">Open Slow</button>
-        <button class="btn">Close Fast</button>
-        <button class="btn">Close Slow</button>
+        <button class="btn" onclick="apirequest('shutteropen','fast')">Open Fast</button>
+        <button class="btn" onclick="apirequest('shutteropen','slow')">Open Slow</button>
+        <button class="btn" onclick="apirequest('shutterclose','fast')">Close Fast</button>
+        <button class="btn" onclick="apirequest('shutterclose','slow')">Close Slow</button>
 
         <h2>Arrows</h2>
-        <button class="btn">Up</button>
-        <button class="btn">Down</button>
-        <button class="btn">Left</button>
-        <button class="btn">Right</button>
+        <button class="btn" onclick="apirequest('arrowup','')">Up</button>
+        <button class="btn" onclick="apirequest('arrowdown','')"</button>>Down</button>
+        <button class="btn" onclick="apirequest('arrowleft','')">Left</button>
+        <button class="btn" onclick="apirequest('arrowright','')">Right</button>
+
+        <h2>Menü-Buttons</h2>
+        <button class="btn" onclick="apirequest('enter','')">Enter</button>
+        <button class="btn" onclick="apirequest('exit','')">Exit</button>
 
         <h2>LCD-Backlight</h2>
-        <button class="btn">On</button>
-        <button class="btn">Off</button>
-        
+        <button class="btn" onclick="apirequest('lcdbacklight','on')">On</button>
+        <button class="btn" onclick="apirequest('lcdbacklight','off')">Off</button>
+
     </div>
 
 </body>
