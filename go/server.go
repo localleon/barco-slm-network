@@ -37,8 +37,13 @@ func main() {
 	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
 	writeLCD(projAddr, "FMT-Barco-Remote", "by Leon, Moesby")
 
-	//Start REST-Api:
 	router := mux.NewRouter()
+
+	// This will serve files under /static/<filename> from path in var dir
+	dir := "static"
+	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(dir))))
+
+	//Start REST-Api:
 	router.HandleFunc("/api/{cmd}/{data}", func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		writeCommand(port, params["cmd"], params["data"])
