@@ -35,6 +35,7 @@ func main() {
 	}
 	defer port.Close() //Make sure to close the port
 	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
+	writeLCD(projAddr, "FMT-Barco-Remote", "by Leon, Moesby")
 
 	//Start REST-Api:
 	router := mux.NewRouter()

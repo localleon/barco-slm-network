@@ -38,15 +38,27 @@ func init() {
 			"on":  []byte{0x01},
 		},
 	}
-	m["lcdclear"] = command{
-		cmd: []byte{0x7a, 0x85},
+	m["shutterclose"] = command{
+		cmd: []byte{0x23, 0x42},
+		datas: map[string][]byte{
+			"fast": []byte{0x00},
+			"slow": []byte{0x01},
+		},
+	}
+	m["shutteropen"] = command{
+		cmd: []byte{0x22, 0x42},
+		datas: map[string][]byte{
+			"fast": []byte{0x00},
+			"slow": []byte{0x01},
+		},
 	}
 }
 
 //Generates a list of commands to wirte to the lcd
 func writeLCD(projAddr byte, first string, second string) [][]byte {
 	list := make([][]byte, 3)
-	list[0] = createBytes(projAddr, m["lcdclear"].cmd, []byte{})
+	//LCD clear:
+	list[0] = createBytes(projAddr, []byte{0x7a, 0x85}, []byte{})
 	//The cmd for writing:
 	cmdWrite := []byte{0x7a, 0x82}
 	//Create the data array
