@@ -10,11 +10,11 @@ for controlling it from Devices like an GrandMa2.
 ## Usage 
 1. Setup your Barco Beamer with RS232 Serial Communication and a Baudrate of 9600
 2. Connect your Computer via a USB-to-RS232 Adapter or other serial Interface. 
-3. Download on of the builds. Open your commandline and type ``` file -name=SERIALPORT ```
+3. Download on of the builds. Open your commandline and type ``` file -serial=SERIALPORT ```
 
 Example:
 ```
-barco-slm-network-v1-0.exe -name=COM3
+barco-slm-network-v1-0.exe -serial=COM3
 ```
 
 ## Dependencies
