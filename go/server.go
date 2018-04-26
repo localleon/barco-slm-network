@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/jacobsa/go-serial/serial"
@@ -16,8 +17,20 @@ var projAddr byte = 1
 func main() {
 	portName := flag.String("name", "COM4", "the identifier for the serial port")
 	baudRate := flag.Uint("baudrate", 9600, "the baudrate for the serial communication")
+	showKeys := flag.Bool("showKeys", false, "if this flag is set, all possible CMD-DATA combinations are printed")
 
 	flag.Parse()
+
+	if *showKeys {
+		for i := range m {
+			fmt.Println(i)
+			for k := range m[i].datas {
+				fmt.Println("\t" + k)
+			}
+		}
+		os.Exit(0)
+	}
+
 	fmt.Printf("Trying to open %v \n", *portName)
 	// Set up options.
 	options := serial.OpenOptions{
