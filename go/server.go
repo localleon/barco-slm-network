@@ -39,8 +39,6 @@ func main() {
 
 	router := mux.NewRouter()
 
-	dir := "static"
-
 	//Start REST-Api:
 	router.HandleFunc("/api/{cmd}/{data}", func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
@@ -59,7 +57,7 @@ func main() {
 	 Mux.Router is threating endpoints in order. So / has to be the last , else it will
 	 get triggerd at every request
 	*/
-	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(dir))))
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("static/"))))
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
