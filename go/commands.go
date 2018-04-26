@@ -52,6 +52,22 @@ func init() {
 			"slow": []byte{0x01},
 		},
 	}
+	m["lensfocus"] = command{
+		cmd: []byte{0xf4, 0x83},
+		datas: map[string][]byte{
+			"near": []byte{0x00},
+			"far":  []byte{0x01},
+		},
+	}
+	m["lensshift"] = command{
+		cmd: []byte{0xf4, 0x81},
+		datas: map[string][]byte{
+			"up":    []byte{0x00},
+			"down":  []byte{0x01},
+			"left":  []byte{0x02},
+			"right": []byte{0x03},
+		},
+	}
 }
 
 //Generates a list of commands to wirte to the lcd
