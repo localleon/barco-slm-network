@@ -1,7 +1,8 @@
 html{
     --light-blue: #a4e4fc;
     --light-black : #152931;
-
+    --main-btn : #fff;
+    --accent-btn :#e1f7ff ;
     margin: 20px 0px 0px 60px;
     padding: 0px;
     background-color: var(--light-black);
@@ -13,14 +14,45 @@ h1{
 }
 
 h2{
-    margin-top: 20px;
+    letter-spacing: 1.5px;
+    margin: 20px 0px 5px 0px;
     font-size: 2em;
 }
 .header{
+    letter-spacing: 5px;
+    float: clear;
     color: var(--light-blue);
 }
+
+.logo{
+    float: left;
+    width: 100px;
+    height: auto;
+}
+.header-h1{
+    padding: 10px 0px 0px 100px;
+}
+
 
 .inner{
     margin-left: 20px;
 }
 
+.btn{
+    width: 85px;
+    height: 35px;
+    margin: 0px 15px 0px 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    border-radius: 3px;
+    border: 1px white dotted;
+    background-color: var(--main-btn);
+}
+
+.btn:hover{
+    background-color: var(--accent-btn);
+}
+
+.btn:focus{
+    border: 1px var(--light-blue) solid;
+}
