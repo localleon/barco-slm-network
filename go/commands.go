@@ -68,6 +68,55 @@ func init() {
 			"right": []byte{0x03},
 		},
 	}
+	m["lenszoom"] = command{
+		cmd: []byte{0xf4, 0x82},
+		datas: map[string][]byte{
+			"in":  []byte{0x00},
+			"out": []byte{0x01},
+		},
+	}
+	m["freezeoff"] = command{
+		cmd: []byte{0x26, 0x23},
+	}
+	m["freezeon"] = command{
+		cmd: []byte{0x27, 0x23},
+	}
+	m["menuexit"] = command{
+		cmd: []byte{0x42, 0x01},
+		datas: map[string][]byte{
+			"one": []byte{0x01},
+			"all": []byte{0xff},
+		},
+	}
+	m["source"] = command{
+		cmd: []byte{0x33},
+		datas: map[string][]byte{
+			"1": []byte{0x01},
+			"2": []byte{0x02},
+			"3": []byte{0x03},
+			"4": []byte{0x04},
+		},
+	}
+	m["textoff"] = command{
+		cmd: []byte{0x0e},
+	}
+	m["texton"] = command{
+		cmd: []byte{0x0d},
+	}
+	m["pattern"] = command{
+		cmd: []byte{0x41},
+		datas: map[string][]byte{
+			"convergence-g":  []byte{0x01},
+			"convergence-rg": []byte{0x02},
+			"convergence-gb": []byte{0x03},
+			"hatch":          []byte{0x04},
+			"checkerboard":   []byte{0x19},
+			"colorbars":      []byte{0x1a},
+			"multiburst":     []byte{0x1b},
+			"outline":        []byte{0x1c},
+			"chars":          []byte{0x23},
+		},
+	}
 }
 
 //Generates a list of commands to wirte to the lcd

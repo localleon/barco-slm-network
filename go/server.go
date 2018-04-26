@@ -15,9 +15,9 @@ import (
 var projAddr byte = 1
 
 func main() {
-	portName := flag.String("name", "COM4", "the identifier for the serial port")
+	portName := flag.String("serial", "COM4", "the identifier for the serial port")
 	baudRate := flag.Uint("baudrate", 9600, "the baudrate for the serial communication")
-	showKeys := flag.Bool("showKeys", false, "if this flag is set, all possible CMD-DATA combinations are printed")
+	showKeys := flag.Bool("showCmds", false, "if this flag is set, all possible CMD-DATA combinations are printed")
 
 	flag.Parse()
 
