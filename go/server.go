@@ -39,9 +39,7 @@ func main() {
 
 	router := mux.NewRouter()
 
-	// This will serve files under /static/<filename> from path in var dir
 	dir := "static"
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(dir))))
 
 	//Start REST-Api:
 	router.HandleFunc("/api/{cmd}/{data}", func(w http.ResponseWriter, r *http.Request) {
@@ -49,11 +47,20 @@ func main() {
 		writeCommand(port, params["cmd"], params["data"])
 		log.Printf("Got request: %v, %v", params["cmd"], params["data"])
 	}).Methods("GET")
+
 	router.HandleFunc("/api/{cmd}", func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		writeCommand(port, params["cmd"], "")
 		log.Printf("Got request: %v, %v", params["cmd"], params["data"])
 	}).Methods("GET")
+
+	/*
+	 This will serve files under /<filename> from path in var dir
+	 Mux.Router is threating endpoints in order. So / has to be the last , else it will
+	 get triggerd at every request
+	*/
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(dir))))
+
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
