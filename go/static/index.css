@@ -18,6 +18,7 @@ h2{
     margin: 20px 0px 5px 0px;
     font-size: 2em;
 }
+
 .header{
     letter-spacing: 5px;
     float: clear;
@@ -36,6 +37,12 @@ h2{
 
 .inner{
     margin-left: 20px;
+    display: inline-grid;
+    grid-template-columns: 50% 50% 50%;
+}
+
+.four-btn{
+    margin-bottom: 20px;
 }
 
 .btn{
