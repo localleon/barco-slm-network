@@ -12,67 +12,80 @@
 
 <body>
     <div class="header">
-            <img src="favicon.ico" class="logo" alt="Logo of the Project">
-            <h1 class="header-h1">Barco-SLM-Network</h1>
+        <img src="favicon.ico" class="logo" alt="Logo of the Project">
+        <h1 class="header-h1">Barco-SLM-Network</h1>
     </div>
-   
-        <div class="inner">
-        <h2>Shutter</h2>
-        <button class="btn" onclick="apirequest('shutteropen','fast')">Open Fast</button>
-        <button class="btn" onclick="apirequest('shutteropen','slow')">Open Slow</button>
-        <button class="btn" onclick="apirequest('shutterclose','fast')">Close Fast</button>
-        <button class="btn" onclick="apirequest('shutterclose','slow')">Close Slow</button>
 
-        <h2>Freeze</h2>
-        <button class="btn" onclick="apirequest('freezeon','')">An</button>
-        <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
+    <div class="inner">
 
-        <h2>Text</h2>
-        <small>Tipp: Fernbedienung hat auch einen Knopf</small><br>
-        <button class="btn" onclick="apirequest('freezeon','')">An</button>
-        <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
+        <div class="grid-1">
+            <h2>Shutter</h2>
+            <button class="btn" onclick="apirequest('shutteropen','fast')">Open Fast</button>
+            <button class="btn" onclick="apirequest('shutteropen','slow')">Open Slow</button>
+            <button class="btn" onclick="apirequest('shutterclose','fast')">Close Fast</button>
+            <button class="btn" onclick="apirequest('shutterclose','slow')">Close Slow</button>
 
-        <h2>Arrows</h2>
-        <button class="btn" onclick="apirequest('infrared','arrowup')">Up</button>
-        <button class="btn" onclick="apirequest('infrared','arrowdown')">Down</button>
-        <button class="btn" onclick="apirequest('infrared','arrowleft')">Left</button>
-        <button class="btn" onclick="apirequest('infrared','arrowright')">Right</button>
+            <h2>Freeze</h2>
+            <button class="btn" onclick="apirequest('freezeon','')">An</button>
+            <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
 
-        <h2>Menü-Buttons</h2>
-        <button class="btn" onclick="apirequest('infrared','enter')">Enter</button>
-        <button class="btn" onclick="apirequest('infrared','exit')">Exit</button>
-        <button class="btn" onclick="apirequest('menuexit','all')">Exit All</button>
+            <h2>Text</h2>
+            <small>Note: Visual Command Feedback</small>
+            <br>
+            <button class="btn" onclick="apirequest('freezeon','')">An</button>
+            <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
 
-        <h2>LCD-Backlight</h2>
-        <button class="btn" onclick="apirequest('lcdbacklight','on')">On</button>
-        <button class="btn" onclick="apirequest('lcdbacklight','off')">Off</button>
+            <h2>Arrows</h2>
+            <button class="btn" onclick="apirequest('infrared','arrowup')">Up</button>
+            <button class="btn" onclick="apirequest('infrared','arrowdown')">Down</button>
+            <button class="btn" onclick="apirequest('infrared','arrowleft')">Left</button>
+            <button class="btn" onclick="apirequest('infrared','arrowright')">Right</button>
 
-        <h2>Lens</h2>
-        <h3>Focus</h3>
-        <button class="btn" onclick="apirequest('lensfocus','near')">Nah</button>
-        <button class="btn" onclick="apirequest('lensfocus','far')">Fern</button>
-        <h3>Zoom</h3>
-        <button class="btn" onclick="apirequest('lenszoom','in')">Rein</button>
-        <button class="btn" onclick="apirequest('lenszoom','out')">Raus</button>
-        <h3>Shift</h3>
-        <button class="btn" onclick="apirequest('lensshift','up')">Hoch</button>
-        <button class="btn" onclick="apirequest('lensshift','down')">Runter</button>
-        <button class="btn" onclick="apirequest('lensshift','left')">Links</button>
-        <button class="btn" onclick="apirequest('lensshift','right')">Rechts</button>
+            <h2>Menü-Buttons</h2>
+            <button class="btn" onclick="apirequest('infrared','enter')">Enter</button>
+            <button class="btn" onclick="apirequest('infrared','exit')">Exit</button>
+            <button class="btn" onclick="apirequest('menuexit','all')">Exit All</button>
 
-        <h2>Source</h2>
-        <button class="btn" onclick="apirequest('source','1')">1</button>
-        <button class="btn" onclick="apirequest('source','2')">2</button>
-        <button class="btn" onclick="apirequest('source','3')">3</button>
-        <button class="btn" onclick="apirequest('source','4')">4</button>
+            <h2>LCD-Backlight</h2>
+            <button class="btn" onclick="apirequest('lcdbacklight','on')">On</button>
+            <button class="btn" onclick="apirequest('lcdbacklight','off')">Off</button>
+        </div>
+        <div class="grid-2">
+            <h2>Lens</h2>
+            <h3>Focus</h3>
+            <button class="btn" onclick="apirequest('lensfocus','near')">Near</button>
+            <button class="btn" onclick="apirequest('lensfocus','far')">Far</button>
+            <h3>Zoom</h3>
+            <button class="btn" onclick="apirequest('lenszoom','in')">In</button>
+            <button class="btn" onclick="apirequest('lenszoom','out')">Out</button>
+            <h3>Shift</h3>
+            <button class="btn" onclick="apirequest('lensshift','up')">Up</button>
+            <button class="btn" onclick="apirequest('lensshift','down')">Down</button>
+            <button class="btn" onclick="apirequest('lensshift','left')">Left</button>
+            <button class="btn" onclick="apirequest('lensshift','right')">Right</button>
 
-        <h2>Pattern</h2>
-        <button class="btn" onclick="apirequest('pattern','checkerboard')">Checkerboard</button>
-        <button class="btn" onclick="apirequest('pattern','colorbars')">Farbbalken</button>
-        <button class="btn" onclick="apirequest('pattern','multiburst')">Multiburst</button>
-        <button class="btn" onclick="apirequest('pattern','outline')">Outline</button>
-        <button class="btn" onclick="apirequest('pattern','chars')">Alphanumerisch</button>
-        <button class="btn" onclick="apirequest('pattern','hatch')">Hatch</button>
+            <h2>Source</h2>
+            <button class="btn" onclick="apirequest('source','1')">1</button>
+            <button class="btn" onclick="apirequest('source','2')">2</button>
+            <button class="btn" onclick="apirequest('source','3')">3</button>
+            <button class="btn" onclick="apirequest('source','4')">4</button>
+
+            <h2>Pattern</h2>
+            <div class="four-btn">
+                <button class="btn" onclick="apirequest('pattern','checkerboard')">Checkerboard</button>
+                <button class="btn" onclick="apirequest('pattern','colorbars')">colorbars</button>
+                <button class="btn" onclick="apirequest('pattern','multiburst')">multiburst</button>
+                <button class="btn" onclick="apirequest('pattern','outline')">outline</button>
+            </div>
+            <button class="btn" onclick="apirequest('pattern','chars')">Chars</button>
+            <button class="btn" onclick="apirequest('pattern','hatch')">Hatch</button>
+        </div>
+        <div class="grid-3">
+            <p>More Commands Grid</p>
+        </div>
+
+
+
     </div>
 
 </body>
