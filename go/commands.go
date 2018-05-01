@@ -113,25 +113,3 @@ func init() {
 	}
 }
 
-//Generates a list of commands to wirte to the lcd
-func calcLcdWriteBytes(projAddr byte, first string, second string) [][]byte {
-	list := make([][]byte, 3)
-	//LCD clear:
-	list[0] = createBytes(projAddr, []byte{0x7a, 0x85}, []byte{})
-	//The cmd for writing:
-	cmdWrite := []byte{0x7a, 0x82}
-	//Create the data array
-	firstData := []byte{0x00, 0x00} //first line and column
-	for _, v := range []byte(first) {
-		firstData = append(firstData, v)
-	}
-	firstData = append(firstData, 0x00)
-	list[1] = createBytes(projAddr, cmdWrite, firstData)
-	secondData := []byte{0x00, 0x01}
-	for _, v := range []byte(second) {
-		secondData = append(secondData, v)
-	}
-	secondData = append(secondData, 0x00)
-	list[2] = createBytes(projAddr, cmdWrite, secondData)
-	return list
-}

@@ -48,9 +48,7 @@ func main() {
 	}
 	defer port.Close() //Make sure to close the port
 	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
-	data := calcLcdWriteBytes(projAddr, "FMT-Barco-Remote", "by Leon and Moesby")
-	writeBytes(port, data[1])
-	writeBytes(port, data[2])
+	writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
 
 	router := mux.NewRouter()
 
@@ -88,4 +86,11 @@ func writeBytes(port io.ReadWriteCloser, data []byte) {
 			log.Printf("Error: port.Write: %v", err)
 		}
 	}
+}
+
+func writeLCD(port io.ReadWriteCloser, text1, text2 string) {
+	data := calcLcdWriteBytes(projAddr, text1, text2)
+	writeBytes(port, data[0]) // Clear LCD
+	writeBytes(port, data[1]) // Write first line
+	writeBytes(port, data[2]) // Write second line
 }
