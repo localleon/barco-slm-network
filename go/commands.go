@@ -97,12 +97,6 @@ func init() {
 			"4": []byte{0x04},
 		},
 	}
-	m["textoff"] = command{
-		cmd: []byte{0x0e},
-	}
-	m["texton"] = command{
-		cmd: []byte{0x0d},
-	}
 	m["pattern"] = command{
 		cmd: []byte{0x41},
 		datas: map[string][]byte{
@@ -120,7 +114,7 @@ func init() {
 }
 
 //Generates a list of commands to wirte to the lcd
-func writeLCD(projAddr byte, first string, second string) [][]byte {
+func calcLcdWriteBytes(projAddr byte, first string, second string) [][]byte {
 	list := make([][]byte, 3)
 	//LCD clear:
 	list[0] = createBytes(projAddr, []byte{0x7a, 0x85}, []byte{})
