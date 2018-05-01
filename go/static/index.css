@@ -56,6 +56,12 @@ h2{
     background-color: var(--main-btn);
 }
 
+.numbtn{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
 .btn:hover{
     background-color: var(--accent-btn);
 }
