@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -61,8 +63,21 @@ func main() {
 
 	router.HandleFunc("/api/{cmd}", func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
-		writeCommand(port, params["cmd"], "")
-		log.Printf("Got request: %v, %v", params["cmd"], params["data"])
+		//check if we have a lcdread and treat it differnet
+		if params["cmd"] == "lcdread" {
+			resp := readLCD(port)
+			js, err := json.Marshal(resp)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			w.Header().Set("Content-Type", "application/json")
+			w.Write(js)
+			log.Printf("Got request: lcdread; responded accordingly")
+		} else {
+			writeCommand(port, params["cmd"], "")
+			log.Printf("Got request: %v, %v", params["cmd"], params["data"])
+		}
 	}).Methods("GET")
 
 	/*
@@ -93,4 +108,48 @@ func writeLCD(port io.ReadWriteCloser, text1, text2 string) {
 	writeBytes(port, data[0]) // Clear LCD
 	writeBytes(port, data[1]) // Write first line
 	writeBytes(port, data[2]) // Write second line
+}
+
+//Help struct for the json data
+type lcd struct {
+	First  string //`json:"first"`
+	Second string //`json:"second"`
+}
+
+func readLCD(port io.ReadWriteCloser) lcd {
+	result := lcd{}
+	//Attemp to read the first line
+	writeBytes(port, createBytes(projAddr, []byte{0x7a, 0x02}, []byte{0, 0}))
+	for {
+		reader := bufio.NewReader(port)
+		reply, _ := reader.ReadBytes('\xff')
+		if reply[2] == 0x7a && reply[3] == 0x02 {
+			result.First = cString(reply[6:])
+			break
+		}
+	}
+	writeBytes(port, createBytes(projAddr, []byte{0x7a, 0x02}, []byte{0, 1}))
+
+	//second line
+	for {
+		reader := bufio.NewReader(port)
+		reply, _ := reader.ReadBytes('\xff')
+		if reply[2] == 0x7a && reply[3] == 0x02 {
+			result.Second = cString(reply[6:])
+			break
+		}
+	}
+
+	return result
+}
+
+func cString(data []byte) string {
+	index := 0
+	for i := 0; i < len(data); i++ {
+		if data[i] == 0 {
+			index = i
+			break
+		}
+	}
+	return string(data[:index])
 }
