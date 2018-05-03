@@ -29,6 +29,7 @@ func init() {
 			"arrowleft":  []byte{0x07},
 			"enter":      []byte{0x0a},
 			"exit":       []byte{0x08},
+			"standby":    []byte{0x0e},
 		},
 	}
 	m["lcdbacklight"] = command{
@@ -112,4 +113,3 @@ func init() {
 		},
 	}
 }
-
