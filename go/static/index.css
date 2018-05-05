@@ -69,3 +69,14 @@ h2{
 .btn:focus{
     border: 1px var(--light-blue) solid;
 }
+
+.lcdread{
+    padding: 5px;
+    font-size: 1.4em;
+    margin-top: 20px;
+    width: 350px;
+    height: 130px;
+    border: 2px black solid;
+    background-color: white;
+    color: black;
+}
