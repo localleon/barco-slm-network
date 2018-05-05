@@ -1,5 +1,7 @@
 window.onload = function () {
     console.log('App started')
+    readLCD()
+    this.setInterval(readLCD, 2500)
 }
 
 function apirequest(cmd, opt) {
@@ -17,16 +19,20 @@ function apirequest(cmd, opt) {
 }
 
 function readLCD() {
-    fetch('/api/readlcd')
+    // Fetches LCD Content from Backend
+    fetch('/api/lcdread')
         .then(function (response) {
-            parseLCD(response.json())
+            return response.json();
         })
+        .then(function (json) {
+            parseLCD(json)
+        });
 }
 
 function parseLCD(json) {
     // Parse json Response and write to html element
     var lcdfirst = document.getElementById("lcdfirst")
     var lcdsecond = document.getElementById("lcdsecond")
-    lcdfirst.innerHTML = json.first
-    lcdsecond.innerHTML = json.second
+    lcdfirst.innerHTML = json.First
+    lcdsecond.innerHTML = json.Second
 }
