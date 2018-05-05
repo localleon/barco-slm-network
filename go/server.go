@@ -50,8 +50,7 @@ func main() {
 	}
 	defer port.Close() //Make sure to close the port
 	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
-	//writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
-	writeLCD(port, "Leon ist schwul", "Gruss von Max")
+	writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
 
 	router := mux.NewRouter()
 
