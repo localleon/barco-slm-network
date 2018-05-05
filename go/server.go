@@ -18,7 +18,7 @@ var projAddr byte = 1
 
 func main() {
 	portName := flag.String("serial", "COM4", "the identifier for the serial port")
-	baudRate := flag.Uint("baudrate", 9600, "the baudrate for the serial communication")
+	baudRate := flag.Uint("baudrate", 115200, "the baudrate for the serial communication")
 	showKeys := flag.Bool("showCmds", false, "if this flag is set, all possible CMD-DATA combinations are printed")
 
 	flag.Parse()
@@ -50,7 +50,8 @@ func main() {
 	}
 	defer port.Close() //Make sure to close the port
 	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
-	writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
+	//writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
+	writeLCD(port, "Leon ist schwul", "Gruss von Max")
 
 	router := mux.NewRouter()
 
