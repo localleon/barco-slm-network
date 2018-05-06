@@ -98,7 +98,7 @@ func main() {
 			if p.Data()[0] == 255 {
 				writeCommand(port, "shutterclose", "fast")
 				log.Println("sACN: shutter closed")
-			} else {
+			} else if p.Data()[0] == 0 {
 				writeCommand(port, "shutteropen", "fast")
 				log.Println("sACN: shutter opened")
 			}
