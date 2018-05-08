@@ -1,1 +1,0 @@
-PEM Passphrase of Certificate is = barco
