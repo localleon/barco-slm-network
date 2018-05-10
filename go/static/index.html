@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
+    <script src="particle-min.js"></script>
     <title>Barco-SLM-Network</title>
 </head>
 
 <body>
     <div class="header">
-        <img src="favicon.ico" class="logo" alt="Logo of the Project">
+        <img src="logo-trans.png" class="logo" alt="Logo of the Project">
         <h1 class="header-h1">Barco-SLM-Network</h1>
     </div>
 
@@ -101,15 +102,17 @@
 
             <h2>LCD-Display</h2>
             <div class="lcdread">
-                <p id="lcdfirst"></p>
-                <p id="lcdsecond"></p>
+                <p class="lcdtext" id="lcdfirst">LCD not loaded</p>
+                <p class="lcdtext" id="lcdsecond">LCD not loaded</p>
             </div>
-            <button class="btn" onclick="readLCD()">Refresh</button>
+            <button class="btn" id="btnrefresh" onclick="readLCD()">Refresh</button>
         </div>
-
-
-
+        <div>
+            <p>// Developed by Thomas "Moesby" Neteler and Leon Rauschenbach</p>
+            <p>// Link to the Dokumentation</p>   
+        </div>
     </div>
+    <div id="aa_particles"></div>
 
 </body>
 
