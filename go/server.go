@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/Hundemeier/go-sacn/sacn"
+
 	"github.com/gorilla/mux"
 	"github.com/jacobsa/go-serial/serial"
 )
@@ -19,6 +21,7 @@ var projAddr byte = 1
 func main() {
 	portName := flag.String("serial", "COM4", "the identifier for the serial port")
 	baudRate := flag.Uint("baudrate", 115200, "the baudrate for the serial communication")
+	universe := flag.Uint("universe", 1, "the sACN universe to listen on")
 	showKeys := flag.Bool("showCmds", false, "if this flag is set, all possible CMD-DATA combinations are printed")
 
 	flag.Parse()
@@ -86,6 +89,20 @@ func main() {
 	 get triggerd at every request
 	*/
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("static/"))))
+
+	recv := sacn.NewReceiver()
+	recv.Receive(uint16(*universe), "")
+	go func() {
+		for p := range recv.DataChan {
+			if p.Data()[0] == 255 {
+				writeCommand(port, "shutterclose", "fast")
+				log.Println("sACN: shutter closed")
+			} else if p.Data()[0] == 0 {
+				writeCommand(port, "shutteropen", "fast")
+				log.Println("sACN: shutter opened")
+			}
+		}
+	}()
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
