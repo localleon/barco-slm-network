@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/Hundemeier/go-sacn/sacn"
 
@@ -133,7 +134,15 @@ type lcd struct {
 	Second string //`json:"second"`
 }
 
+var readLCDLock = false
+
 func readLCD(port io.ReadWriteCloser) lcd {
+	for readLCDLock {
+		//wait unitl the lock is over
+		time.Sleep(10 * time.Millisecond)
+	}
+	readLCDLock = true
+
 	result := lcd{}
 	//Attemp to read the first line
 	writeBytes(port, createBytes(projAddr, []byte{0x7a, 0x02}, []byte{0, 0}))
@@ -156,7 +165,7 @@ func readLCD(port io.ReadWriteCloser) lcd {
 			break
 		}
 	}
-
+	readLCDLock = false
 	return result
 }
 
