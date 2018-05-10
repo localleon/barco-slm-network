@@ -16,6 +16,7 @@ function apirequest(cmd, opt) {
         method: 'GET',
         credentials: 'same-origin',
     })
+    readLCD();
 }
 
 function readLCD() {
