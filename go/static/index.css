@@ -7,6 +7,8 @@ html{
     padding: 0px;
     background-color: var(--light-black);
     color:white;
+    overflow:hidden;
+
 }
 
 h1{
@@ -20,22 +22,30 @@ h2{
 }
 
 .header{
+    width: 100%;
+    position: absolute;
+    z-index: 5;
     letter-spacing: 5px;
     float: clear;
     color: var(--light-blue);
 }
 
 .logo{
+    padding: 25px 20px 0px 0px ;
     float: left;
     width: 100px;
     height: auto;
 }
+
 .header-h1{
     padding: 10px 0px 0px 100px;
 }
 
 
 .inner{
+    margin-top: 8%;
+    position: absolute;
+    z-index: 5;
     margin-left: 20px;
     display: inline-grid;
     grid-template-columns: 50% 50% 50%;
@@ -72,11 +82,32 @@ h2{
 
 .lcdread{
     padding: 5px;
-    font-size: 1.4em;
     margin-top: 20px;
-    width: 350px;
-    height: 130px;
-    border: 2px black solid;
+    width: 400px;
+    height: 80px;;
     background-color: white;
+}
+
+
+.lcdtext{
+    margin: 0px;
+    padding: 5px;
     color: black;
+    font-size: 1.5em;
+}
+#lcdsecond{
+    margin-left: 8px;
+}
+
+#btnrefresh{
+    margin-top:20px;
+}
+
+#aa_particles
+{
+    z-index: 4;
+
+    height: 100%;
+    height: 100vh;
+
 }
