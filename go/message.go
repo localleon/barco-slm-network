@@ -61,9 +61,8 @@ func convertByte(val byte) []byte {
 		return []byte{0x80, 0x7e}
 	} else if val == 0xff {
 		return []byte{0x80, 0x7f}
-	} else {
-		return []byte{val}
 	}
+	return []byte{val}
 }
 
 //Returns a nil pointer if the byt1 is not 0x80 or the bytes could not be converted
