@@ -91,10 +91,12 @@ func main() {
 	*/
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("static/"))))
 
-	recv, err := sacn.Receive(uint16(*universe), "")
+	recv, err := sacn.NewReceiverSocket("", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer recv.Close()
+	recv.ActivateUniverse(uint16(*universe), true)
 	go func() {
 		for p := range recv.DataChan {
 			if p.Data()[0] == 255 {
