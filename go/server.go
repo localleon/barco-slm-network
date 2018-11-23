@@ -24,6 +24,7 @@ func main() {
 	baudRate := flag.Uint("baudrate", 115200, "the baudrate for the serial communication")
 	universe := flag.Uint("universe", 1, "the sACN universe to listen on")
 	showKeys := flag.Bool("showCmds", false, "if this flag is set, all possible CMD-DATA combinations are printed")
+	verboseOn := flag.Bool("verbose", false, "extra Output")
 
 	flag.Parse()
 
@@ -53,7 +54,9 @@ func main() {
 		log.Fatalf("Could not open serial port: %v", err)
 	}
 	defer port.Close() //Make sure to close the port
-	fmt.Printf("Successfully opened the serial port! Baudrate: %v", *baudRate)
+	fmt.Println("Successfully opened the serial port! Baudrate: %v", *baudRate)
+	fmt.Println("Listening on sACN Universe", *universe)
+	fmt.Println("HTTP Web Interface on Port 80, http://localhost:80")
 	writeLCD(port, "FMT-Barco-Remote", "by Leon and Moesby")
 
 	router := mux.NewRouter()
@@ -91,24 +94,37 @@ func main() {
 	*/
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("static/"))))
 
+	// Setup sACN Receiver
 	recv, err := sacn.NewReceiverSocket("", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer recv.Close()
-	recv.ActivateUniverse(uint16(*universe), true)
-	go func() {
-		for p := range recv.DataChan {
-			if p.Data()[0] == 255 {
+
+	recv.SetOnChangeCallback(func(old sacn.DataPacket, newD sacn.DataPacket) {
+		// Little bit Extra Info
+		if *verboseOn {
+			fmt.Println("sACN: Universe ", newD.Universe())
+			fmt.Println("sACN: Data", newD.Data())
+		}
+		// If Packet is from our choosen Universe , check if right channels are 255
+		if newD.Universe() == uint16(*universe) {
+			channels := newD.Data()
+			// Listens on sACN Channel 1 on selected Universe
+			if channels[0] == 255 {
 				writeCommand(port, "shutterclose", "fast")
 				log.Println("sACN: shutter closed")
-			} else if p.Data()[0] == 0 {
+			} else if channels[1] == 255 {
 				writeCommand(port, "shutteropen", "fast")
 				log.Println("sACN: shutter opened")
 			}
 		}
-	}()
+	})
+	recv.SetTimeoutCallback(func(univ uint16) {
+		log.Println("sACN: Timeout on", univ)
+	})
+	recv.Start()
 
+	// Start HTTP Server
 	log.Fatal(http.ListenAndServe(":80", router))
 }
 

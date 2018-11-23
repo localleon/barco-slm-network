@@ -16,6 +16,15 @@ Example:
 ```
 barco-slm-network-v1-0.exe -serial=COM3
 ```
+### Web Interface
+Visit http://localhost:80 to use the WebInterface
+
+### sACN Usage
+Send an Unicast sACN Signal to the Computer. Multicast is not supported. 
+Default Universe is 1, but can be changed via Flag --universe. 
+- Set Channel 1 to 255 to close the Shutter. 
+- Set Channel 2 to 255 to open the Shutter. 
+
 
 ## Dependencies
 ```
