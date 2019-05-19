@@ -112,12 +112,6 @@ particlesJS("aa_particles", {
       "size": {
         "value": 3,
         "random": true,
-        "anim": {
-          "enable": false,
-          "speed": 40,
-          "size_min": 0.1,
-          "sync": false
-        }
       },
       "line_linked": {
         "enable": true,
@@ -127,18 +121,7 @@ particlesJS("aa_particles", {
         "width": 1
       },
       "move": {
-        "enable": true,
-        "speed": 2,
-        "direction": "none",
-        "random": false,
-        "straight": false,
-        "out_mode": "out",
-        "bounce": false,
-        "attract": {
-          "enable": false,
-          "rotateX": 600,
-          "rotateY": 1200
-        }
+        "enable": false,
       }
     },
     "interactivity": {
