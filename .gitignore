@@ -10,7 +10,7 @@ go/go
 *.dll
 *.so
 *.dylib
-
+barco-slm-net*
 # Test binary, build with `go test -c`
 *.test
 
