@@ -6,7 +6,7 @@ Network Interface for Barco SLM R6 Performer via the RS232 Port
 This Project implements the most important functions of 
 Barcos Serial Communication Protocol for LCD-DLP Projectors. 
 Its written in Golang and provides you with an Rest API and an sACN Interface
-for controlling it from Devices like an GrandMa2. 
+for controlling it from Devices like an GrandMa2. This was only tested on a Barco SLM R6 Performer, but should support more modells. 
 
 ## Usage 
 ### Setup on the Barco Beamer 
@@ -46,7 +46,14 @@ Default Universe is 1, but can be changed via Flag --universe.
 - Set Channel 2 to 255 to open the Shutter. 
 
 ## API
-There's not authorization on the API. This Project is only intended to run in protected networks
+The Projects exposes a simple HTTP API under localhost:80/api/. Just send an HTTP Get to one of the following EndPoints.Caution, there's not authorization on the API. This Project is only intended to run in protected networks
+
+Generic Call:
+` curl localhost:80/api/ENDPOINT/FUNCTION`
+
+Example Call: 
+` curl localhost:80/api/shutteropen/fast `
+
 
 ```
 # Shutter Functions
@@ -127,3 +134,8 @@ infrared /
 "github.com/jacobsa/go-serial/serial"
 https://github.com/Hundemeier/go-sacn
 ```
+
+## Develop / Build
+Pull Requests and Issues are always welcome. 
+
+Clone Repo and execute build.sh to build your binarys for every tested plattfrom. 
