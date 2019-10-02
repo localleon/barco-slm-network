@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,10 +31,10 @@
             <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
 
             <h2>Arrows</h2>
-            <button class="btn" onclick="apirequest('infrared','arrowup')">Up</button>
-            <button class="btn" onclick="apirequest('infrared','arrowdown')">Down</button>
-            <button class="btn" onclick="apirequest('infrared','arrowleft')">Left</button>
-            <button class="btn" onclick="apirequest('infrared','arrowright')">Right</button>
+            <button class="btn" onmousedown="mdown('up')" onmouseout="mup()" onmouseup="mup()">Up</button>
+            <button class="btn" onmousedown="mdown('down')" onmouseout="mup()" onmouseup="mup()">Down</button>
+            <button class="btn" onmousedown="mdown('left')" onmouseout="mup()" onmouseup="mup()">Left</button>
+            <button class="btn" onmousedown="mdown('right')" onmouseout="mup()" onmouseup="mup()">Right</button>
 
             <h2>Menü-Buttons</h2>
             <button class="btn" onclick="apirequest('infrared','enter')">Enter</button>
@@ -48,16 +48,16 @@
         <div class="grid-2">
             <h2>Lens</h2>
             <h3>Focus</h3>
-            <button class="btn" onclick="apirequest('lensfocus','near')">Near</button>
-            <button class="btn" onclick="apirequest('lensfocus','far')">Far</button>
+            <button class="btn" onmousedown="mdown('focusN')" onmouseout="mup()" onmouseup="mup()">Near</button>
+            <button class="btn" onmousedown="mdown('focusF')" onmouseout="mup()" onmouseup="mup()">Far</button>
             <h3>Zoom</h3>
-            <button class="btn" onclick="apirequest('lenszoom','in')">In</button>
-            <button class="btn" onclick="apirequest('lenszoom','out')">Out</button>
+            <button class="btn" onmousedown="mdown('zoomin')" onmouseout="mup()" onmouseup="mup()">In</button>
+            <button class="btn" onmousedown="mdown('zoomout')" onmouseout="mup()" onmouseup="mup()">Out</button>
             <h3>Shift</h3>
-            <button class="btn" onclick="apirequest('lensshift','up')">Up</button>
-            <button class="btn" onclick="apirequest('lensshift','down')">Down</button>
-            <button class="btn" onclick="apirequest('lensshift','left')">Left</button>
-            <button class="btn" onclick="apirequest('lensshift','right')">Right</button>
+            <button class="btn" onmousedown="mdown('shup')" onmouseout="mup()" onmouseup="mup()">Up</button>
+            <button class="btn" onmousedown="mdown('shdown')" onmouseout="mup()" onmouseup="mup()">Down</button>
+            <button class="btn" onmousedown="mdown('shleft')" onmouseout="mup()" onmouseup="mup()">Left</button>
+            <button class="btn" onmousedown="mdown('shright')" onmouseout="mup()" onmouseup="mup()">Right</button>
 
             <h2>Source</h2>
             <button class="btn" onclick="apirequest('source','1')">1</button>
