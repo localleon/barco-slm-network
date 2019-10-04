@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: "Barco SLM Network API"
+  version: "1.0.0"
+tags:
+  - name: Write
+    description: Write related requests
+  - name: Command
+    description: Command related requests
+paths:
+  /api/{cmd}/{data}:
+    get:
+      operationId: getCmdData
+      summary: Write data to serial
+      tags: [ 'Command', 'Write' ]
+      parameters:
+        - in: path
+          name: cmd
+          required: true
+          schema:
+            type: string
+            maximum: 1
+          description: The command to run
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/{cmd}:
+    get:
+      operationId: getCmd
+      summary: Run a command
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: cmd
+          required: true
+          schema:
+            type: string
+            maximum: 1
+          description: The command to run
+      responses:
+        '200':
+          description: OK
+  /api/lcdread:
+    get:
+      operationId: getlcdread
+      summary: Run the lcdread command
+      tags: [ 'Command' ]
+      responses:
+        '200':
+          $ref: "#/components/responses/lcd"
+  /:
+    get:
+      operationId: root
+      summary: Return the main web interface
+      responses:
+        '200':
+          description: HTML UI
+        default:
+          description: Web Handling Error
+components:
+  schemas:
+    lcdObj:
+      type: object
+      properties:
+        first:
+          type: string
+        second:
+          type: string
+  responses:
+    lcd:
+      description: The LCD response object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/lcdObj"
