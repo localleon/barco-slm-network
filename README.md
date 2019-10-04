@@ -135,6 +135,9 @@ infrared /
 https://github.com/Hundemeier/go-sacn
 ```
 
+- Project now supports Go11 Modules
+- Dependencies Section should have a link togo.mod and go.sum
+
 ## Develop / Build
 Pull Requests and Issues are always welcome. 
 
