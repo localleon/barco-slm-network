@@ -31,10 +31,10 @@
             <button class="btn" onclick="apirequest('freezeoff','')">Aus</button>
 
             <h2>Arrows</h2>
-            <button class="btn" onmousedown="mdown('up')" onmouseout="mup()" onmouseup="mup()">Up</button>
-            <button class="btn" onmousedown="mdown('down')" onmouseout="mup()" onmouseup="mup()">Down</button>
-            <button class="btn" onmousedown="mdown('left')" onmouseout="mup()" onmouseup="mup()">Left</button>
-            <button class="btn" onmousedown="mdown('right')" onmouseout="mup()" onmouseup="mup()">Right</button>
+            <button class="btn" onmousedown="apiButtonHold('infrared','arrowup')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Up</button>
+            <button class="btn" onmousedown="apiButtonHold('infrared','arrowdown')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Down</button>
+            <button class="btn" onmousedown="apiButtonHold('infrared','arrowleft')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Left</button>
+            <button class="btn" onmousedown="apiButtonHold('infrared','arrowright')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Right</button>
 
             <h2>Menü-Buttons</h2>
             <button class="btn" onclick="apirequest('infrared','enter')">Enter</button>
@@ -48,16 +48,16 @@
         <div class="grid-2">
             <h2>Lens</h2>
             <h3>Focus</h3>
-            <button class="btn" onmousedown="mdown('focusN')" onmouseout="mup()" onmouseup="mup()">Near</button>
-            <button class="btn" onmousedown="mdown('focusF')" onmouseout="mup()" onmouseup="mup()">Far</button>
+            <button class="btn" onmousedown="apiButtonHold('lensfocus','near')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Near</button>
+            <button class="btn" onmousedown="apiButtonHold('lensfocus','far')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Far</button>
             <h3>Zoom</h3>
-            <button class="btn" onmousedown="mdown('zoomin')" onmouseout="mup()" onmouseup="mup()">In</button>
-            <button class="btn" onmousedown="mdown('zoomout')" onmouseout="mup()" onmouseup="mup()">Out</button>
+            <button class="btn" onmousedown="apiButtonHold('lenszoom','in')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">In</button>
+            <button class="btn" onmousedown="apiButtonHold('lenszoom','out')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Out</button>
             <h3>Shift</h3>
-            <button class="btn" onmousedown="mdown('shup')" onmouseout="mup()" onmouseup="mup()">Up</button>
-            <button class="btn" onmousedown="mdown('shdown')" onmouseout="mup()" onmouseup="mup()">Down</button>
-            <button class="btn" onmousedown="mdown('shleft')" onmouseout="mup()" onmouseup="mup()">Left</button>
-            <button class="btn" onmousedown="mdown('shright')" onmouseout="mup()" onmouseup="mup()">Right</button>
+            <button class="btn" onmousedown="apiButtonHold('lensshift','up')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Up</button>
+            <button class="btn" onmousedown="apiButtonHold('lensshift','down')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Down</button>
+            <button class="btn" onmousedown="apiButtonHold('lensshift','left')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Left</button>
+            <button class="btn" onmousedown="apiButtonHold('lensshift','upright')" onmouseout="apiButtonRelease()" onmouseup="apiButtonRelease()">Right</button>
 
             <h2>Source</h2>
             <button class="btn" onclick="apirequest('source','1')">1</button>

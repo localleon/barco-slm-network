@@ -77,54 +77,18 @@ function keybindings(e) {
 }
 
 var tid; //timeout ID
-var persec = 3; //How many times per second should the API be called?
 
-function mdown(cmd) {
+function apiButtonHold(cmd, opt) {
     //Loop apirequests as long as a button is pressed
-    switch (cmd) {
-        case 'up':
-            apirequest('infrared', 'arrowup');
-            break; //Up button
-        case 'down':
-            apirequest('infrared', 'arrowdown');
-            break; //Down button
-        case 'left':
-            apirequest('infrared', 'arrowleft');
-            break; //Left button
-        case 'right':
-            apirequest('infrared', 'arrowright');
-            break; //Right button
-        case 'focusN':
-            apirequest('lensfocus', 'near');
-            break; //lens focus near
-        case 'focusF':
-            apirequest('lensfocus', 'far');
-            break; //lens focus far
-        case 'zoomin':
-            apirequest('lenszoom', 'in');
-            break; //lens zoom in
-        case 'zoomout':
-            apirequest('lenszoom', 'out');
-            break; //lens zoom out
-        case 'shup':
-            apirequest('lensshift', 'up');
-            break; //shift lens upwards
-        case 'shdown':
-            apirequest('lensshift', 'down');
-            break; //shift lens downwards
-        case 'shleft':
-            apirequest('lensshift', 'left');
-            break; //shift lens to the left
-        case 'shright':
-            apirequest('lensshift', 'right');
-            break; //shift lens to the right
 
-    }
+    var persec = 3; //How many times per second should the API be called?
+
+    apirequest(cmd, opt);
 
 
-    tid = setTimeout(mdown.bind(null, cmd), Math.round(1000 / persec)); //Repeats the function with the same parameter n times per second, changable via persec variable
+    tid = setTimeout(apiButtonHold.bind(null, cmd, opt), Math.round(1000 / persec)); //Repeats the function with the same parameter n times per second, changable via persec variable
 }
-function mup() {
+function apiButtonRelease() {
     //Stop apirequest loop when button is no longer pressed
     clearTimeout(tid);
 }
