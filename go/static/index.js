@@ -73,6 +73,24 @@ function keybindings(e) {
     }
 }
 
+var tid; //timeout ID
+
+function apiButtonHold(cmd, opt) {
+    //Loop apirequests as long as a button is pressed
+
+    var persec = 3; //How many times per second should the API be called?
+
+    apirequest(cmd, opt);
+
+
+    tid = setTimeout(apiButtonHold.bind(null, cmd, opt), Math.round(1000 / persec)); //Repeats the function with the same parameter n times per second, changable via persec variable
+}
+function apiButtonRelease() {
+    //Stop apirequest loop when button is no longer pressed
+    clearTimeout(tid);
+}
+
+
 function particlejsinit() {
     console.log("Loaded particles-js")
     /* ---- particles.js config ---- */
