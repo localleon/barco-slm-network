@@ -55,87 +55,18 @@ Default Universe is 1, but can be changed via Flag --universe.
 - Set Channel 2 to 255 to open the Shutter. 
 
 ## API
-The Projects exposes a simple HTTP API under localhost:80/api/. Just send an HTTP Get to one of the following EndPoints.Caution, there's not authorization on the API. This Project is only intended to run in protected networks
+The Projects exposes a simple HTTP API under localhost:80/api/. Just send an HTTP Get to one of the following EndPoints.Caution, there's **no authorization** on the API. This Project is only intended to run in protected networks. 
 
+This API is documented with the [OpenAPI v3.0.0 Specification](https://github.com/OAI/OpenAPI-Specification). The Specification file (YAML) can be found under `go/api/openapi.yaml`. To view the file use something like Postman or [Swagger Editor](https://editor.swagger.io/)
+
+```
 Generic Call:
-` curl localhost:80/api/ENDPOINT/FUNCTION`
+curl localhost:80/api/ENDPOINT/FUNCTION
 
 Example Call: 
-` curl localhost:80/api/shutteropen/fast `
-
-
+curl localhost:80/api/shutteropen/fast
 ```
-# Shutter Functions
-shutterclose /
-        fast
-        slow
-shutteropen /
-        fast
-        slow
-# Backlight of LCD
-lcdbacklight /
-        off
-        on
-# Freezing
-freezeoff 
-freezeon
-# Focus of the Lens
-lensfocus /
-        near
-        far
-# Shift the Lens in multiple Directions
-lensshift /
-        up
-        down
-        left
-        right
-# Zoom of the Lens
-lenszoom / 
-        in
-        out
-# Exit Menu on LCD
-menuexit /
-        one
-        all
-# Select Video Source
-source /
-        1
-        2
-        3
-        4
-        
-# Multiple Sample Patterns are displayed
-pattern / 
-        convergence-g
-        convergence-rg
-        convergence-gb
-        hatch
-        chars
-        checkerboard
-        colorbars
-        multiburst
-        outline
-# Every Button from the IR Remote
-infrared /
-        7
-        0
-        1
-        2
-        arrowleft
-        4
-        8
-        arrowdown
-        6
-        standby
-        *
-        3
-        5
-        enter
-        exit
-        9
-        arrowup
-        arrowright
-```
+
 ## Dependencies
 
 Infos about the Dependencies can be found in [go.mod](https://github.com/localleon/barco-slm-network/blob/master/go/go.mod) and [go.sum](https://github.com/localleon/barco-slm-network/blob/master/go/go.sum).

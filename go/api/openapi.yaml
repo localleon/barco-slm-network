@@ -1,56 +1,201 @@
 openapi: 3.0.0
 info:
   title: "Barco SLM Network API"
-  version: "1.0.0"
+  version: "2.1"
 tags:
-  - name: Write
-    description: Write related requests
   - name: Command
-    description: Command related requests
+    description: Commands that can be sent to the Beamer
 paths:
-  /api/{cmd}/{data}:
+  /api/infrared/{data}:
     get:
-      operationId: getCmdData
-      summary: Write data to serial
-      tags: [ 'Command', 'Write' ]
+      operationId: CMDinfrared
+      summary: Control Infrared Functions with possible Option
+      tags: [ 'Command' ]
       parameters:
-        - in: path
-          name: cmd
-          required: true
-          schema:
-            type: string
-            maximum: 1
-          description: The command to run
         - in: path
           name: data
           required: true
           schema:
             type: string
+            enum: ["*", 1,2,3,4,5,6,7,8,9,"arrowdown","arrowup","arrowright","arrowleft","enter","exit","standby"]
             maximum: 1
           description: The data to provide to the command
       responses:
         '200':
           description: OK
-  /api/{cmd}:
+  /api/lcdbacklight/{data}:
     get:
-      operationId: getCmd
-      summary: Run a command
+      operationId: CMDlcdbacklight
+      summary: Toggle Backlight of LCD Display
       tags: [ 'Command' ]
       parameters:
         - in: path
-          name: cmd
+          name: data
           required: true
           schema:
             type: string
+            enum: ["off","on"]
             maximum: 1
-          description: The command to run
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/shutterclose/{data}:
+    get:
+      operationId: CMDshutterclose
+      summary: Close the Shutter with diffrent Speeds
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["fast","slow"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/shutteropen/{data}:
+    get:
+      operationId: CMDshutteropen
+      summary: Opens the Shutter with diffrent Speeds
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["fast","slow"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/lensfocus/{data}:
+    get:
+      operationId: CMDlensfocus
+      summary: Focus the Lens of the Beamer
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["near","far"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK  
+  /api/lensshift/{data}:
+    get:
+      operationId: CMDlensshift
+      summary: Move the projected image by shifting the lens
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["up","down","left","right"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/lenszoom/{data}:
+    get:
+      operationId: CMDlenszoom
+      summary: Zooming the projected picture
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["in","out"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/menuexit/{data}:
+    get:
+      operationId: CMDmenuexit
+      summary: Exit from a LCD Menu Item
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["one","all"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/source/{data}:
+    get:
+      operationId: CMDsource
+      summary: Select a Video Source to display
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["1","2","3","4"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK
+  /api/pattern/{data}:
+    get:
+      operationId: CMDpattern
+      summary: Display a default pattern to check lens
+      tags: [ 'Command' ]
+      parameters:
+        - in: path
+          name: data
+          required: true
+          schema:
+            type: string
+            enum: ["convergence-g","convergence-rg","convergence-gb","hatch","checkerboard","colorbars","multiburst","outline","chars"]
+            maximum: 1
+          description: The data to provide to the command
+      responses:
+        '200':
+          description: OK  
+  /api/freezeoff:
+    get:
+      operationId: CMDfreezeoff
+      summary: Unfreezes the picture
+      tags: [ 'Command' ]
+      responses:
+        '200':
+          description: OK
+  /api/freezen:
+    get:
+      operationId: CMDfreezeon
+      summary: Freezes the picture
+      tags: [ 'Command' ]
       responses:
         '200':
           description: OK
   /api/lcdread:
     get:
       operationId: getlcdread
-      summary: Run the lcdread command
+      summary: This returns the text currently displayed on the LCD
       tags: [ 'Command' ]
       responses:
         '200':
@@ -71,8 +216,10 @@ components:
       properties:
         first:
           type: string
+           description: the first line of the 16x2 LCD screen. Should not exceed 16 characters
         second:
           type: string
+          description: the second line of the 16x2 LCD screen. Should not exceed 16 characters
   responses:
     lcd:
       description: The LCD response object
