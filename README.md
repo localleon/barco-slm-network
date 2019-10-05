@@ -128,15 +128,9 @@ infrared /
         arrowright
 ```
 ## Dependencies
-```
-"net/http"
-"github.com/gorilla/mux"
-"github.com/jacobsa/go-serial/serial"
-https://github.com/Hundemeier/go-sacn
-```
 
 - Project now supports Go11 Modules
-- Dependencies Section should have a link togo.mod and go.sum
+- Dependencies Section should have a link to [go.mod](https://github.com/localleon/barco-slm-network/blob/master/go/go.mod) and [go.sum](https://github.com/localleon/barco-slm-network/blob/master/go/go.sum)
 
 ## Develop / Build
 Pull Requests and Issues are always welcome. 
