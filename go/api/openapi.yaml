@@ -216,8 +216,10 @@ components:
       properties:
         first:
           type: string
+           description: the first line of the 16x2 LCD screen. Should not exceed 16 characters
         second:
           type: string
+          description: the second line of the 16x2 LCD screen. Should not exceed 16 characters
   responses:
     lcd:
       description: The LCD response object
