@@ -36,6 +36,15 @@ This is also displayed via `--help`
 ```
 ### Web Interface
 Visit http://localhost:80 to use the WebInterface. Here you can control all supported Functions and read the Text from the LCD. 
+The following buttons can be held down to repeat the API calls: arrow up/down/left/right, lensshift up/down/left/right, focus near/far, zoom in/out.
+The following keys on your keyboard are shortcuts to these API/Button functions:
+```
+arrow keys: arrow up/down/left/right
+o: open shutter fast
+c: close shutter fast
+enter key: enter
+ESC: cancel
+```
 
 ### sACN Usage
 For use in an light/video/audio production enviroment this programm supports sACN (E1.31 protocol by the ESTA). This can be used to control the Barco via an lighting console.
